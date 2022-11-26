@@ -8,7 +8,7 @@ Game* game = nullptr;
 int main(int argc, char* argv[])
 {
 	// refresh rate of game
-	const int fps = 60;
+	const int fps = 30;
 	// max time between frames
 	const int frameDelay = 1000 / fps;
 	
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 	// creating window and renderer
 	game = new Game();
 
-	game->initSDL("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400);;
+	game->initSDL("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480);;
 
 	while (game->checkRunning())
 	{

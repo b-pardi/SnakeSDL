@@ -43,7 +43,9 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 	// init positions of snake head
 	snake = new Snake(300, 200, 20, 20);
 	snake->initSnake();
-	snake->velocity = 2;
+	snake->velocity = 8;
+	snake->body_len = 3;
+
 }
 
 void Game::update()
@@ -70,8 +72,33 @@ void Game::render()
 	// render the snake head
 	// location and size of rect to be filled
 	SDL_Rect fillRect = { snake->snakeRect.x, snake->snakeRect.y, snake->snakeRect.w, snake->snakeRect.h };
-	SDL_SetRenderDrawColor(renderer, 101,122,98,255);
+	SDL_SetRenderDrawColor(renderer, 101, 122, 98, 255);
 	SDL_RenderFillRect(renderer, &fillRect);
+
+	int prevX = snake->bodyX[0];
+	int prevY = snake->bodyY[0];
+	snake->bodyX[0] = snake->snakeRect.x;
+	snake->bodyY[0] = snake->snakeRect.y;
+	int curX, curY;
+
+	for (int i = 1; i < snake->body_len; i++)
+	{
+		// cursors set to where body piece currently is
+		curX = snake->bodyX[i];
+		curY = snake->bodyY[i];
+		// now set tail to one in front of it
+		snake->bodyX[i] = prevX;
+		snake->bodyY[i] = prevY;
+		// set prev to cursor to continue iteratively down the snake body
+		prevX = curX;
+		prevY = curY;
+
+		// render the snake
+		// location and size of rect to be filled
+		SDL_Rect fillRect = { prevX, prevY, snake->snakeRect.w, snake->snakeRect.h };
+		SDL_SetRenderDrawColor(renderer, 101, 122, 98, 255);
+		SDL_RenderFillRect(renderer, &fillRect);
+	}
 
 	SDL_RenderPresent(renderer);
 }
