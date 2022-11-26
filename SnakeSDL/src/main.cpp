@@ -8,7 +8,7 @@ Game* game = nullptr;
 int main(int argc, char* argv[])
 {
 	// refresh rate of game
-	const int fps = 30;
+	const int fps = 60;
 	// max time between frames
 	const int frameDelay = 1000 / fps;
 	
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 		// delay next frame to ensure 60fps
 		if (frameDelay > frameTime)
 		{
-			SDL_Delay(frameDelay - frameTime);
+			SDL_Delay(2*(frameDelay - frameTime));
 		}
 	}
 

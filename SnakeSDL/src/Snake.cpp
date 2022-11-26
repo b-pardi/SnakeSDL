@@ -1,5 +1,6 @@
 #include "../headers/Snake.h"
 
+// snake objcet that carries size and location of snake pieces
 Snake::Snake(int snake_x, int snake_y, int snake_w, int snake_h)
 {
 	this->snake_x = snake_x;
@@ -8,6 +9,7 @@ Snake::Snake(int snake_x, int snake_y, int snake_w, int snake_h)
 	this->snake_h = snake_h;
 }
 
+// use values from constructor to create an SDL rectangle for the snake
 void Snake::initSnake()
 {
 	snakeRect.x = snake_x;

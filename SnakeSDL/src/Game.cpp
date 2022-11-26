@@ -3,15 +3,12 @@
 Snake* snake = nullptr;
 
 Game::Game()
-{
-	
-}
+{ }
 
 Game::~Game()
-{
-	
-}
+{ }
 
+// initialize SDL components for rendering graphics and error check to make sure they init properly
 void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 {
 	int flags = 0;
@@ -43,11 +40,12 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 	// init positions of snake head
 	snake = new Snake(300, 200, 20, 20);
 	snake->initSnake();
-	snake->velocity = 8;
-	snake->body_len = 3;
+	snake->velocity = 5;
+	snake->body_len = 5;
 
 }
 
+// handles things that change each frame of game loop
 void Game::update()
 {
 	if (snake->direction == 3)
@@ -63,6 +61,7 @@ void Game::update()
 		snake->snakeRect.y -= snake->velocity;
 }
 
+// after processing updated entities, render them to the screen (including background)
 void Game::render()
 {
 	// clear previous position of snake and rerender background
@@ -81,6 +80,7 @@ void Game::render()
 	snake->bodyY[0] = snake->snakeRect.y;
 	int curX, curY;
 
+	// iteratively render snake body pieces behind head
 	for (int i = 1; i < snake->body_len; i++)
 	{
 		// cursors set to where body piece currently is
@@ -103,6 +103,7 @@ void Game::render()
 	SDL_RenderPresent(renderer);
 }
 
+// handle events that occur in gameloop like quitting or key inputs
 void Game::eventHandler()
 {
 	SDL_Event event;
@@ -135,11 +136,13 @@ void Game::eventHandler()
 	}
 }
 
+// used in game loop to ensure game still running
 bool Game::checkRunning()
 {
 	return isRunning;
 }
 
+// called when game loop in main is exited to free memory
 void Game::memoryClear()
 {
 	SDL_DestroyWindow(window);
