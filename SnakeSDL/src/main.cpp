@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 
 	// creating window and renderer
 	game = new Game();
-
+	                                                                       // boundries 
 	game->initSDL("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480);;
 
 	while (game->checkRunning())

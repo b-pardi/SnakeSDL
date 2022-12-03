@@ -53,6 +53,18 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 */
 void Game::update()
 {
+	 // right							// left 
+	if (snake->snakeRect.x == (640 ) || snake->snakeRect.x < 0 )
+	{
+		isRunning = false;
+	}
+
+	// up								//down
+	if (snake->snakeRect.y == (480) || snake->snakeRect.y < 0)
+	{
+		isRunning = false;
+	}
+
 	if (snake->direction == 3)
 		snake->snakeRect.x += snake->velocity;
 
@@ -64,6 +76,9 @@ void Game::update()
 
 	if (snake->direction == 12)
 		snake->snakeRect.y -= snake->velocity;
+
+	
+
 }
 
 // after processing updated entities, render them to the screen (including background)
@@ -115,19 +130,27 @@ void Game::render()
 /*
 * NEED TO DO:
 * - detect collision for fruit
-* - detect collision for wall
+* - detect collision for wall   >>>>>>>> GOT IT!!
 * - detect collision for snake running into itself
 */
+
 void Game::eventHandler()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
+	
+
 	switch (event.type)
 	{
 	// check if user quit game
+
+
+
 	case SDL_QUIT:
 		isRunning = false;
 		break;
+
+	
 	// check if user pressing arrow key
 	case SDL_KEYDOWN:
 		// snake directions correspond to clock directions
@@ -148,12 +171,15 @@ void Game::eventHandler()
 	default:
 		break;
 	}
+
+
 }
 
 // used in game loop to ensure game still running
 bool Game::checkRunning()
 {
 	return isRunning;
+
 }
 
 // called when game loop in main is exited to free memory
