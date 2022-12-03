@@ -77,6 +77,7 @@ void Game::update()
 	if (snake->direction == 12)
 		snake->snakeRect.y -= snake->velocity;
 
+
 	
 
 }
@@ -103,6 +104,11 @@ void Game::render()
 	snake->bodyY[0] = snake->snakeRect.y;
 	int curX, curY;
 
+	
+	SDL_Rect fillRect = { fruit->fruitRect.x, fruit->fruitRect.y , 20, 20 };
+	SDL_SetRenderDrawColor(renderer, 106, 13, 173, 0xFF);
+	SDL_RenderFillRect(renderer, &fillRect);
+
 	// iteratively render snake body pieces behind head
 	for (int i = 1; i < snake->body_len; i++)
 	{
@@ -121,7 +127,12 @@ void Game::render()
 		SDL_Rect fillRect = { prevX, prevY, snake->snakeRect.w, snake->snakeRect.h };
 		SDL_SetRenderDrawColor(renderer, 101, 122, 98, 255);
 		SDL_RenderFillRect(renderer, &fillRect);
+
+
+
 	}
+
+	
 
 	SDL_RenderPresent(renderer);
 }

@@ -17,3 +17,21 @@ void Snake::initSnake()
 	snakeRect.w = snake_w;
 	snakeRect.h = snake_h;
 }
+
+
+void Fruit::initFruit()
+{
+	fruitRect.x = fruit_x;
+	fruitRect.y = fruit_y;
+	fruitRect.w = fruit_w;
+	fruitRect.h = fruit_h;
+
+}
+
+Fruit::Fruit(int fruit_x, int fruit_y, int fruit_w, int fruit_h)
+{
+	this->fruit_x = fruit_x;
+	this->fruit_y = fruit_y;
+	this->fruit_w = fruit_w;
+	this->fruit_h = fruit_h;
+}
