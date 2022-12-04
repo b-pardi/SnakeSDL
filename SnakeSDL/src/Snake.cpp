@@ -18,6 +18,13 @@ void Snake::initSnake()
 	snakeRect.h = snake_h;
 }
 
+Fruit::Fruit(int fruit_x, int fruit_y, int fruit_w, int fruit_h)
+{
+	this->fruit_x = fruit_x;
+	this->fruit_y = fruit_y;
+	this->fruit_w = fruit_w;
+	this->fruit_h = fruit_h;
+}
 
 void Fruit::initFruit()
 {
@@ -28,10 +35,12 @@ void Fruit::initFruit()
 
 }
 
-Fruit::Fruit(int fruit_x, int fruit_y, int fruit_w, int fruit_h)
+// uses random number generator to determine new x and y coordinates for the fruit
+void Fruit::nextPosition(int lower_x, int upper_x, int lower_y, int upper_y)
 {
-	this->fruit_x = fruit_x;
-	this->fruit_y = fruit_y;
-	this->fruit_w = fruit_w;
-	this->fruit_h = fruit_h;
+	int xrand = lower_x + rand() % upper_x;
+	fruitRect.x = xrand;
+	
+	int yrand = lower_y + rand() % upper_y;
+	fruitRect.y = yrand;
 }

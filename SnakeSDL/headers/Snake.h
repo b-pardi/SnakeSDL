@@ -2,6 +2,7 @@
 #define SNAKE_H
 
 #include "SDL.h"
+#include <stdlib.h>
 
 class Snake
 {
@@ -17,8 +18,6 @@ public:
 	~Snake();
 
 	void initSnake();
-
-
 };
 
 
@@ -34,6 +33,7 @@ public:
 	~Fruit();
 
 	void initFruit();
+	void nextPosition(int lower_x, int upper_x, int lower_y, int upper_y);
 };
 
 #endif // SNAKE_H

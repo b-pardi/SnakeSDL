@@ -50,11 +50,6 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 }
 
 // handles things that change each frame of game loop
-/*
-* NEED TO DO:
-* - when fruit collision detected -> add length of snake and increase score
-* - when wall or snake collision detected -> set isRunning to false
-*/
 void Game::update()
 {
 	 // right							// left 
@@ -84,12 +79,15 @@ void Game::update()
 	if (fruit->fruitRect.x == snake->snakeRect.x && fruit->fruitRect.y == snake->snakeRect.y)
 	{
 		snake->body_len += 4;
+		//fruit->fruitRect.x = fruit
+		fruit->nextPosition(0, 640, 0, 480);
 	}
 
 
 	if ((fruit->fruitRect.x < snake->snakeRect.x + 20 && fruit->fruitRect.x > snake->snakeRect.x - 20) && (fruit->fruitRect.y < snake->snakeRect.y + 20  && fruit->fruitRect.y >= snake->snakeRect.y - 20))
 	{
 		snake->body_len += 2;
+		fruit->nextPosition(0,640,0,480);
 	}
 
 
@@ -153,8 +151,6 @@ void Game::render()
 // handle events that occur in gameloop like quitting or key inputs
 /*
 * NEED TO DO:
-* - detect collision for fruit
-* - detect collision for wall   >>>>>>>> GOT IT!!
 * - detect collision for snake running into itself
 */
 
