@@ -17,6 +17,8 @@ public:
 	~Snake();
 
 	void initSnake();
+
+
 };
 
 
@@ -25,12 +27,10 @@ class Fruit
 public:
 	SDL_Rect fruitRect;
 	int fruit_x, fruit_y, fruit_w, fruit_h;
-	int direction, velocity;
-	int bodyX[200], bodyY[200];
-	int body_len;
-
+	int next_pos;
 
 	Fruit(int fruit_x, int fruit_y, int fruit_w, int fruit_h);
+
 	~Fruit();
 
 	void initFruit();

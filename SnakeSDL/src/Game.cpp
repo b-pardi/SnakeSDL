@@ -1,7 +1,7 @@
 #include "../headers/Game.h"
 
 Snake* snake = nullptr;
-
+Fruit* fruit = nullptr;
 Game::Game()
 { }
 
@@ -43,6 +43,10 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 	snake->velocity = 5;
 	snake->body_len = 5;
 
+	fruit = new Fruit(350, 250, 20, 20);
+	fruit->initFruit();
+
+
 }
 
 // handles things that change each frame of game loop
@@ -77,8 +81,17 @@ void Game::update()
 	if (snake->direction == 12)
 		snake->snakeRect.y -= snake->velocity;
 
+	if (fruit->fruitRect.x == snake->snakeRect.x && fruit->fruitRect.y == snake->snakeRect.y)
+	{
+		snake->body_len += 4;
+	}
 
-	
+
+	if ((fruit->fruitRect.x < snake->snakeRect.x + 20 && fruit->fruitRect.x > snake->snakeRect.x - 20) && (fruit->fruitRect.y < snake->snakeRect.y + 20  && fruit->fruitRect.y >= snake->snakeRect.y - 20))
+	{
+		snake->body_len += 2;
+	}
+
 
 }
 
@@ -105,9 +118,9 @@ void Game::render()
 	int curX, curY;
 
 	
-	SDL_Rect fillRect = { fruit->fruitRect.x, fruit->fruitRect.y , 20, 20 };
+	SDL_Rect temp_fruit = { fruit->fruitRect.x, fruit->fruitRect.y , 20, 20 };
 	SDL_SetRenderDrawColor(renderer, 106, 13, 173, 0xFF);
-	SDL_RenderFillRect(renderer, &fillRect);
+	SDL_RenderFillRect(renderer, &temp_fruit);
 
 	// iteratively render snake body pieces behind head
 	for (int i = 1; i < snake->body_len; i++)
