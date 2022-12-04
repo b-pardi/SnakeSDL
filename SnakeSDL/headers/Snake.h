@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include <stdlib.h>
 
+// snake class
 class Snake
 {
 public:
@@ -20,7 +21,7 @@ public:
 	void initSnake();
 };
 
-
+// fruit class
 class Fruit
 {
 public:

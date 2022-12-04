@@ -138,12 +138,7 @@ void Game::render()
 		SDL_Rect fillRect = { prevX, prevY, snake->snakeRect.w, snake->snakeRect.h };
 		SDL_SetRenderDrawColor(renderer, 101, 122, 98, 255);
 		SDL_RenderFillRect(renderer, &fillRect);
-
-
-
 	}
-
-	
 
 	SDL_RenderPresent(renderer);
 }
