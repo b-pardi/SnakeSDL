@@ -33,7 +33,13 @@ int main(int argc, char* argv[])
 		// delay next frame to ensure 60fps
 		if (frameDelay > frameTime)
 		{
-			SDL_Delay(2*(frameDelay - frameTime));
+			SDL_Delay(2 * (frameDelay - frameTime));
+		}
+
+		while (game->checkPaused())
+		{
+			SDL_Delay(500);
+			game->eventHandler();
 		}
 	}
 

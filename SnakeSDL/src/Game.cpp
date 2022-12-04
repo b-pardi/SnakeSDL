@@ -191,6 +191,12 @@ void Game::eventHandler()
 			break;
 		case SDLK_UP:
 			snake->direction = 12;
+			break;
+		case SDLK_ESCAPE:
+			if (isPaused)
+				isPaused = false;
+			else
+				isPaused = true;
 		}
 	default:
 		break;
@@ -204,6 +210,11 @@ bool Game::checkRunning()
 {
 	return isRunning;
 
+}
+
+bool Game::checkPaused()
+{
+	return isPaused;
 }
 
 // called when game loop in main is exited to free memory

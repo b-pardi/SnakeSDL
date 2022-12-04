@@ -16,12 +16,14 @@ public:
 	void initSDL(const char* title, int xpos, int ypos, int width, int height);
 	void update();
 	bool checkRunning();
+	bool checkPaused();
 	void render();
 	void eventHandler();
 	void memoryClear();
 
 private:
 	bool isRunning;
+	bool isPaused;
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 };
