@@ -43,6 +43,8 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 	snake->velocity = 5;
 	snake->body_len = 5;
 
+	fruit = new 
+
 }
 
 // handles things that change each frame of game loop
