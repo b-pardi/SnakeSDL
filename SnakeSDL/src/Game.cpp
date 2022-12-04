@@ -2,6 +2,8 @@
 
 Snake* snake = nullptr;
 Fruit* fruit = nullptr;
+int score;
+
 Game::Game()
 { }
 
@@ -45,6 +47,7 @@ void Game::initSDL(const char* title, int xpos, int ypos, int width, int height)
 
 	fruit = new Fruit(350, 250, 20, 20);
 	fruit->initFruit();
+;
 
 
 }
@@ -76,16 +79,20 @@ void Game::update()
 	if (snake->direction == 12)
 		snake->snakeRect.y -= snake->velocity;
 
+
+	// incrim score here !!
 	if (fruit->fruitRect.x == snake->snakeRect.x && fruit->fruitRect.y == snake->snakeRect.y)
 	{
 		snake->body_len += 4;
-		//fruit->fruitRect.x = fruit
+		score += 2;
 		fruit->nextPosition(0, 640, 0, 480);
+		
 	}
 
 
 	if ((fruit->fruitRect.x < snake->snakeRect.x + 20 && fruit->fruitRect.x > snake->snakeRect.x - 20) && (fruit->fruitRect.y < snake->snakeRect.y + 20  && fruit->fruitRect.y >= snake->snakeRect.y - 20))
 	{
+		score += 2;
 		snake->body_len += 2;
 		fruit->nextPosition(0,640,0,480);
 	}
@@ -119,6 +126,8 @@ void Game::render()
 	SDL_Rect temp_fruit = { fruit->fruitRect.x, fruit->fruitRect.y , 20, 20 };
 	SDL_SetRenderDrawColor(renderer, 106, 13, 173, 0xFF);
 	SDL_RenderFillRect(renderer, &temp_fruit);
+
+
 
 	// iteratively render snake body pieces behind head
 	for (int i = 1; i < snake->body_len; i++)
@@ -202,6 +211,7 @@ void Game::memoryClear()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
+	std::cout << "Game Over!\n" << "Score: " << score << std::endl;
 	SDL_Quit();
 	std::cout << "Game memory cleared" << std::endl;
 }

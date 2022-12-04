@@ -37,7 +37,11 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	game->memoryClear();
 
+
+
+
+	game->memoryClear();
+    
 	return 0;
 }

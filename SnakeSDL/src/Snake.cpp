@@ -35,6 +35,11 @@ void Fruit::initFruit()
 
 }
 
+
+
+
+
+
 // uses random number generator to determine new x and y coordinates for the fruit
 void Fruit::nextPosition(int lower_x, int upper_x, int lower_y, int upper_y)
 {
